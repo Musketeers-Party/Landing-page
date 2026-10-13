@@ -136,10 +136,55 @@
 
     <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-[240px_1fr]">
       <aside class="rounded-2xl border border-line bg-elev p-4 md:sticky md:top-24">
-        <h3 class="mb-3 text-[13px] font-bold uppercase tracking-[0.1em] text-faint">Wiki pages</h3>
-        <ul id="wikiList" class="flex flex-col gap-1.5"></ul>
+        <div class="mb-3">
+          <div class="text-[15px] font-bold text-ink">💎 Nép Wiki</div>
+          <div class="mt-1 text-[12px] italic text-faint">"Turn every walk into a treasure hunt."</div>
+        </div>
+        <hr class="my-3 border-line" />
+        <div class="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-faint">🧭 Tổng quan Dự án</div>
+        <ul class="mb-3 flex flex-col gap-1.5">
+          <li><button class="wiki-nav-item" data-page="Home">🏠 Trang chủ</button></li>
+          <li><button class="wiki-nav-item" data-page="Project-Direction">🎯 Định hướng Sản phẩm</button></li>
+          <li><button class="wiki-nav-item" data-page="Mobile-Product-Rationale">📱 Lý do Phát triển Mobile</button></li>
+        </ul>
+        <hr class="my-3 border-line" />
+        <div class="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-faint">🔍 Nghiên cứu &amp; Phân tích</div>
+        <ul class="mb-3 flex flex-col gap-1.5">
+          <li><button class="wiki-nav-item" data-page="User-and-Market-Research">👥 Nghiên cứu Người dùng &amp; Thị trường</button></li>
+          <li><button class="wiki-nav-item" data-page="Existing-Solutions-and-Alternatives">⚖️ Phân tích Giải pháp Hiện có</button></li>
+        </ul>
+        <hr class="my-3 border-line" />
+        <div class="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-faint">🧪 Giả định &amp; Kiểm chứng</div>
+        <ul class="mb-3 flex flex-col gap-1.5">
+          <li><button class="wiki-nav-item" data-page="Critical-Assumptions">⚠️ Giả định Cốt lõi</button></li>
+          <li><button class="wiki-nav-item" data-page="Evidence-Plan">📋 Kế hoạch Thu thập Bằng chứng</button></li>
+          <li><button class="wiki-nav-item" data-page="Evidence-Evaluation-and-Product-Decision">📊 Đánh giá Bằng chứng &amp; Quyết định</button></li>
+        </ul>
+        <hr class="my-3 border-line" />
+        <div class="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-faint">🚀 Thiết kế Sản phẩm &amp; MVP</div>
+        <ul class="mb-3 flex flex-col gap-1.5">
+          <li><button class="wiki-nav-item" data-page="Business-Canvas">💼 Business Model Canvas</button></li>
+          <li><button class="wiki-nav-item" data-page="User-Stories">📝 User Stories</button></li>
+          <li><button class="wiki-nav-item" data-page="Critical-User-Flows">🔀 Luồng Người dùng Cốt lõi (CUFs)</button></li>
+          <li><button class="wiki-nav-item" data-page="MVP-Scope-and-Prioritization">🎯 Phạm vi &amp; Ưu tiên MVP</button></li>
+        </ul>
+        <hr class="my-3 border-line" />
+        <div class="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-faint">🔗 Liên kết Nhanh</div>
+        <ul class="flex flex-col gap-1.5">
+          <li><a class="wiki-nav-item no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">💻 GitHub Repository</a></li>
+          <li><a class="wiki-nav-item no-underline" href="https://github.com/Musketeers-Party/Nep/issues" target="_blank" rel="noopener">🐛 Báo cáo Sự cố (Issues)</a></li>
+          <li><a class="wiki-nav-item no-underline" href="https://github.com/Musketeers-Party/Nep/security" target="_blank" rel="noopener">🛡️ Chính sách Bảo mật</a></li>
+        </ul>
+        <div class="mt-4 border-t border-line pt-3 text-[11px] text-faint">📍 Nép Mobile App • Musketeers Party</div>
       </aside>
       <article id="wikiContent" class="prose prose-invert max-w-none rounded-2xl border border-line bg-bg p-6 md:p-8 prose-headings:tracking-tight prose-a:text-accenthover prose-strong:text-ink prose-code:text-accenthover"></article>
+    </div>
+
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-line pt-4 text-[13px] text-dim">
+      <span class="italic">Nép — Turn every walk into a treasure hunt.</span>
+      <a class="transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">Repository</a>
+      <a class="transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep/issues" target="_blank" rel="noopener">Report an Issue</a>
+      <a class="transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep/security" target="_blank" rel="noopener">Security Policy</a>
     </div>
   </div>
 </section>
@@ -197,28 +242,13 @@
       })
       .catch(() => { /* keep static fallback values */ });
 
-    /* ---------- wiki viewer ---------- */
+    /* ---------- wiki viewer (navigation from HTML sidebar) ---------- */
     const OWNER = 'Musketeers-Party', REPO = 'Nep';
-    const WIKI_PAGES = [
-      'Home', 'Business-Canvas', 'Critical-Assumptions', 'Critical-User-Flows',
-      'Evidence-Evaluation-and-Product-Decision', 'Evidence-Plan',
-      'Existing-Solutions-and-Alternatives', 'Mobile-Product-Rationale',
-      'MVP-Scope-and-Prioritization', 'Project-Direction',
-      'User-and-Market-Research', 'User-Stories'
-    ];
-    const list = document.getElementById('wikiList');
     const content = document.getElementById('wikiContent');
+    const navButtons = document.querySelectorAll('button.wiki-nav-item');
+    const WIKI_PAGES = [...navButtons].map(b => b.dataset.page);
 
-    WIKI_PAGES.forEach(page => {
-      const li = document.createElement('li');
-      const btn = document.createElement('button');
-      btn.className = 'wiki-nav-item';
-      btn.dataset.page = page;
-      btn.textContent = page.replace(/-/g, ' ');
-      btn.addEventListener('click', () => loadWiki(page));
-      li.appendChild(btn);
-      list.appendChild(li);
-    });
+    navButtons.forEach(btn => btn.addEventListener('click', () => loadWiki(btn.dataset.page)));
 
     function setActive(page) {
       document.querySelectorAll('.wiki-nav-item').forEach(b =>
