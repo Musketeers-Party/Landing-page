@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Musketeers-Party — One app for all app, all app for one app</title>
+  <meta name="description" content="Musketeers-Party is a software organization building a unified ecosystem of apps. Nép turns every walk into a treasure hunt." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><circle cx='18' cy='18' r='17' fill='none' stroke='%23f0b84a' stroke-width='1.5'/><circle cx='18' cy='18' r='12' fill='none' stroke='%23f0b84a' stroke-width='0.8' opacity='0.5'/><path d='M11 11 L25 25' stroke='%23f0b84a' stroke-width='2.5' stroke-linecap='round'/><path d='M11 25 L25 11' stroke='%23f0b84a' stroke-width='2.5' stroke-linecap='round' opacity='0.7'/><circle cx='18' cy='18' r='3.2' fill='%23f0b84a'/></svg>" />
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: { md: '821px', lg: '1025px' },
+          maxWidth: { container: '1120px' },
+          colors: {
+            bg: '#0b0d12',
+            elev: '#11141c',
+            elev2: '#161b26',
+            line: '#1f2635',
+            ink: '#e6e8ef',
+            dim: '#a9b2c1',
+            faint: '#97a0b3',
+            accent: '#f0b84a',
+            accenthover: '#ffc878',
+            inkon: '#1a0f03'
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            'float-slow': 'float 7s ease-in-out infinite reverse'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-18px)' } }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+    ::selection { background: rgba(240, 184, 74, 0.12); color: #e6e8ef; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #0b0d12; }
+    ::-webkit-scrollbar-thumb { background: #1f2635; border-radius: 8px; border: 2px solid #0b0d12; }
+    i[data-lucide] { width: 1.05em; height: 1.05em; display: inline-block; vertical-align: -0.12em; }
+    .hero-bg {
+      background:
+        radial-gradient(1200px 600px at 85% -10%, rgba(240, 184, 74, 0.12), transparent 60%),
+        radial-gradient(800px 600px at -10% 110%, rgba(120, 80, 255, 0.10), transparent 55%),
+        #0b0d12;
+    }
+    .hero-gem {
+      background: radial-gradient(circle at 30% 30%, #ffd27a, #f0b84a 60%, #b87a1e);
+      box-shadow: 0 0 0 8px rgba(240, 184, 74, 0.06), 0 0 40px rgba(240, 184, 74, 0.25);
+    }
+    .hero-gem2 {
+      background: radial-gradient(circle at 30% 30%, #7dd3fc, #38bdf8 60%, #0e7490);
+      box-shadow: 0 0 0 6px rgba(240, 184, 74, 0.06), 0 0 30px rgba(56, 189, 248, 0.2);
+    }
+    .featured-bg { background: radial-gradient(1200px 700px at 90% 110%, rgba(240, 184, 74, 0.06), transparent 55%), #0b0d12; }
+    .featured-card::before {
+      content: ""; position: absolute; inset: 0; border-radius: 16px; pointer-events: none;
+      background: radial-gradient(600px 400px at 85% 110%, rgba(240, 184, 74, 0.10), transparent 60%);
+    }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .modal-backdrop { display: none; }
+    .modal-backdrop.open { display: flex; }
+    @media (max-width: 820px) {
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; z-index: 40;
+        flex-direction: column; align-items: flex-start; gap: 22px; padding: 80px 24px 24px;
+        background: #161b26; border-left: 1px solid #1f2635; transition: right 0.3s;
+      }
+      .nav-links.open { right: 0; }
+      .hamburger { display: block; }
+      .hero-visual { display: none; }
+    }
+  </style>
+</head>
+<body class="bg-bg text-ink">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
+  <div class="mx-auto flex h-[68px] max-w-container items-center justify-between px-6">
+    <a href="#top" class="flex items-center gap-3 text-lg font-extrabold tracking-tight">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" class="shrink-0">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="38" y2="38">
+            <stop stop-color="#f0b84a"/>
+            <stop offset="1" stop-color="#d99a2b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="19" cy="19" r="18" stroke="url(#lg1)" stroke-width="1.4"/>
+        <circle cx="19" cy="19" r="13.5" stroke="#f0b84a" stroke-width="0.8" opacity="0.5"/>
+        <path d="M11.5 11.5 L26.5 26.5" stroke="#f0b84a" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M11.5 26.5 L26.5 11.5" stroke="#f0b84a" stroke-width="2.6" stroke-linecap="round" opacity="0.7"/>
+        <circle cx="19" cy="19" r="3.4" fill="#f0b84a"/>
+      </svg>
+      <span><span class="text-accenthover">Musketeers</span>-Party</span>
+    </a>
+    <ul id="navLinks" class="nav-links flex items-center gap-[22px]">
+      <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="#mission">About</a></li>
+      <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="#nep">Nép</a></li>
+      <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="#contact">Contact</a></li>
+      <li><a class="rounded-full bg-accent px-[18px] py-[9px] text-[13px] font-bold text-inkon transition-colors hover:bg-accenthover hover:no-underline" href="projects.html">Showcase</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger hidden cursor-pointer border-none bg-transparent p-0 text-ink" aria-label="Menu"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-bg relative overflow-hidden py-20 pb-16" id="top">
+  <div class="mx-auto grid max-w-container grid-cols-1 items-center gap-12 px-6 md:grid-cols-[1.15fr_0.85fr]">
+    <div>
+      <span class="mb-3 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-inkon">⚔️ One app for all app, all app for one app</span>
+      <h1 class="mb-5 text-[clamp(32px,4.6vw,54px)] font-extrabold leading-[1.12] tracking-[-0.04em]">We build one <span class="text-accenthover">unified app</span><br/>for every app in the ecosystem.</h1>
+      <p class="mb-7 max-w-[560px] text-[17px] text-dim">
+        Musketeers-Party is a software organization built on teamwork, discipline, and
+        the bond of fellow musketeers. We craft modular, reusable foundations that
+        converge into a single seamless experience — one team, one goal, every product.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#nep" class="inline-flex items-center gap-2 rounded-full bg-accent px-[22px] py-3 text-[15px] font-bold text-inkon transition-colors hover:bg-accenthover hover:no-underline">Explore the projects <i data-lucide="arrow-right"></i></a>
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-full border border-line bg-transparent px-[22px] py-3 text-[15px] font-bold text-ink transition-colors hover:border-accent hover:text-accenthover hover:no-underline">Get in touch <i data-lucide="mail"></i></a>
+      </div>
+    </div>
+    <div class="hero-visual relative">
+      <div class="hero-gem animate-float absolute h-[100px] w-[100px] rounded-full opacity-90"></div>
+      <div class="hero-gem2 animate-float-slow absolute right-[1%] top-[32%] h-16 w-16 rounded-full opacity-80"></div>
+      <div class="absolute -bottom-1.5 -right-1.5 flex items-center gap-3 rounded-xl border border-line bg-elev2 px-3.5 py-3">
+        <div><div class="text-[11px] font-bold uppercase tracking-[0.12em] text-faint">GitHub stars</div><div class="text-[15px] font-semibold">1 ★</div></div>
+        <div><div class="text-[11px] font-bold uppercase tracking-[0.12em] text-faint">Public repos</div><div class="text-[15px] font-semibold">4</div></div>
+        <div><div class="text-[11px] font-bold uppercase tracking-[0.12em] text-faint">Core team</div><div class="text-[15px] font-semibold">1</div></div>
+      </div>
+      <div class="absolute left-0 top-3.5 rounded-[10px] border border-line bg-elev px-3.5 py-3">
+        <div class="text-[11px] font-bold uppercase tracking-[0.08em] text-faint">Mission</div>
+        <div class="text-sm font-semibold">One app. All apps. For one team.</div>
+      </div>
+      <div class="absolute bottom-[22px] left-0 rounded-[10px] border border-line bg-elev px-3.5 py-3">
+        <div class="text-[11px] font-bold uppercase tracking-[0.08em] text-faint">Core value</div>
+        <div class="text-sm font-semibold">Users come first</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="flex flex-wrap items-center justify-between gap-7 border-b border-line bg-elev px-6 py-[18px]">
+  <span class="text-[13px] text-dim"><strong class="block text-[22px] text-ink">1</strong>GitHub stars</span>
+  <span class="text-[13px] text-dim"><strong class="block text-[22px] text-ink">4</strong>Public repositories</span>
+  <span class="text-[13px] text-dim"><strong class="block text-[22px] text-ink">1</strong>Core team</span>
+  <span class="text-[13px] text-dim"><strong class="block text-[22px] text-ink">0</strong>Open issues</span>
+</div>
+<!-- MISSION -->
+<section class="border-b border-line bg-elev" id="mission">
+  <div class="mx-auto max-w-container px-6">
+    <div class="grid grid-cols-1 items-center gap-12 py-16 md:grid-cols-2">
+      <div>
+        <span class="mb-3 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-inkon">Our philosophy</span>
+        <h2 class="mb-3 text-[30px] tracking-[-0.03em]">The Musketeer Code</h2>
+        <p class="text-[15px] text-dim">
+          No piece of code stands alone. Every module, library, and service supports
+          one another to defend a single goal: the finest product for our users.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div class="reveal rounded-[10px] border border-line bg-bg p-5 transition-colors hover:border-accent">
+          <i class="code-icon block text-[26px] [&>svg]:h-[26px] [&>svg]:w-[26px]" data-lucide="shield-check"></i>
+          <h3 class="mb-2 mt-1.5 text-[15px] tracking-[-0.01em]">User Center</h3>
+          <p class="text-[13px] leading-[1.55] text-faint">The user and the value delivered are the highest priority in every line of code we write.</p>
+        </div>
+        <div class="reveal rounded-[10px] border border-line bg-bg p-5 transition-colors hover:border-accent">
+          <i class="block text-[26px] [&>svg]:h-[26px] [&>svg]:w-[26px]" data-lucide="users"></i>
+          <h3 class="mb-2 mt-1.5 text-[15px] tracking-[-0.01em]">Collaborative Craftsmanship</h3>
+          <p class="text-[13px] leading-[1.55] text-faint">Brutal code review with a constructive spirit. One bug is the team's bug; one win is the team's win.</p>
+        </div>
+        <div class="reveal rounded-[10px] border border-line bg-bg p-5 transition-colors hover:border-accent">
+          <i class="block text-[26px] [&>svg]:h-[26px] [&>svg]:w-[26px]" data-lucide="lightbulb"></i>
+          <h3 class="mb-2 mt-1.5 text-[15px] tracking-[-0.01em]">Continuous Mastery</h3>
+          <p class="text-[13px] leading-[1.55] text-faint">Constantly sharpen skills, adopt new technology, and uphold Clean Code and Design Patterns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECT: NÉP (the single pinned main app) -->
+<section class="featured-bg py-16" id="nep">
+  <div class="mx-auto max-w-container px-6">
+    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+      <div class="featured-card reveal relative overflow-hidden rounded-2xl border border-line bg-bg p-8 transition duration-200 hover:-translate-y-0.5 hover:border-accent hover:shadow-[0_24px_50px_rgba(0,0,0,0.45)]">
+        <i class="relative z-10 block text-accent [&>svg]:h-14 [&>svg]:w-14" data-lucide="map-pin"></i>
+        <div class="relative z-10">
+          <div class="text-[26px] tracking-[-0.03em]">Nép</div>
+          <div class="mb-2.5 text-sm font-medium text-faint">Musketeers-Party</div>
+          <p class="my-3 text-[16px] leading-[1.7] text-dim">Turn every walk into a treasure hunt. Anonymous messages hidden in real-world places reveal the city's secret corners, unexpected stories, and local perspectives — one step at a time.</p>
+          <div class="mb-2.5 mt-3.5 flex flex-wrap gap-2">
+            <span class="inline-block whitespace-nowrap rounded-full border border-accent/35 bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-accenthover">React Native</span>
+            <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">Mobile</span>
+            <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">Map &amp; location</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">★ 1</span>
+            <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">🍴 0 forks</span>
+            <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">🐛 14 issues</span>
+            <a class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">View on GitHub <i data-lucide="external-link"></i></a>
+          </div>
+        </div>
+        <div class="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-[5px] text-[11px] font-extrabold uppercase tracking-[0.08em] text-inkon"><i data-lucide="award"></i> Pinned</div>
+      </div>
+      <div class="reveal rounded-2xl border border-line bg-bg p-7 transition duration-200 hover:-translate-y-0.5 hover:border-accent hover:shadow-[0_24px_50px_rgba(0,0,0,0.45)]">
+        <i class="block text-accent [&>svg]:h-7 [&>svg]:w-7" data-lucide="compass"></i>
+        <div class="mt-3 text-[20px]">How it works</div>
+        <p class="my-3 text-sm leading-[1.65] text-dim">A mobile-first experience: find "Gems" on a map, walk toward a coordinate, and unlock anonymous messages within a 15–20 m radius. Position is a core part of the unlock logic, so permissions are handled carefully and the data stays anonymous.</p>
+        <ul class="mt-3.5 mb-1 pl-5">
+          <li class="mb-1.5 text-sm text-dim">View Gems on a map</li>
+          <li class="mb-1.5 text-sm text-dim">Move to a coordinate</li>
+          <li class="text-sm text-dim">Unlock a message within 15–20 m</li>
+        </ul>
+        <a class="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-dim transition-colors hover:text-accenthover hover:no-underline" href="projects.html#wiki">Explore the details <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CTA -->
+<section class="border-y border-line bg-bg py-12" id="contact">
+  <div class="mx-auto max-w-container px-6">
+    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+      <div>
+        <span class="mb-3 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-inkon">Stay in the fight</span>
+        <h2 class="mb-3 text-[30px]">Join the Musketeers</h2>
+        <p class="text-[15px] text-dim">
+          One app for all, all apps for one. Whether you want to contribute code, share
+          ideas, or just watch the journey — we'd be honored to have you at the table.
+        </p>
+      </div>
+      <form id="subscribeForm" class="flex gap-2.5">
+        <input type="email" placeholder="Enter your email to receive updates" aria-label="Email"
+          class="min-w-0 flex-1 rounded-full border border-line bg-elev px-[18px] py-[13px] text-[15px] text-ink outline-none transition-colors placeholder:text-faint focus:border-accent" />
+        <button class="inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-[22px] py-3 text-[15px] font-bold text-inkon transition-colors hover:bg-accenthover" type="submit">Subscribe <i data-lucide="arrow-right"></i></button>
+      </form>
+      <p id="feedBack" class="mt-3 text-[13px] text-dim"></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-line bg-elev2">
+  <div class="mx-auto grid max-w-container grid-cols-1 gap-6 px-6 py-9 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">⚔️ Musketeers-Party</h4>
+      <p class="text-sm text-faint">One app for all app, all app for one app.</p>
+    </div>
+    <div>
+      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Explore</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="#mission">The Musketeer Code</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="#nep">Featured project: Nép</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="projects.html">Showcase</a>
+      <a class="block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="#contact">Contact</a>
+    </div>
+    <div>
+      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Repositories</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">Nép</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep-Server" target="_blank" rel="noopener">Nep-Server</a>
+      <a class="block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/.github" target="_blank" rel="noopener">.github</a>
+    </div>
+    <div>
+      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Connect</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party" target="_blank" rel="noopener">GitHub organization</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep/issues" target="_blank" rel="noopener">Report an issue</a>
+      <a class="block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep/blob/main/SECURITY.md" target="_blank" rel="noopener">Security policy</a>
+    </div>
+  </div>
+  <div class="px-6 py-[18px] text-center text-[13px] text-faint">
+    &copy; 2026 Musketeers-Party. Built with ♥ by the Musketeers.
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-backdrop fixed inset-0 z-[100] items-center justify-center bg-black/60 p-6 backdrop-blur-sm" id="modal">
+  <div class="w-full max-w-[520px] rounded-2xl border border-line bg-elev2 p-7">
+    <button id="modalClose" class="absolute right-3 top-3 cursor-pointer border-none bg-transparent p-0 text-dim"><i data-lucide="x"></i></button>
+    <h2 id="modalTitle" class="mb-2 text-[22px]">Project detail</h2>
+    <p id="modalText" class="mb-[18px] text-sm leading-[1.6] text-dim"></p>
+    <div class="flex flex-wrap gap-2.5">
+      <input id="modalRepo" type="text" readonly class="w-full border border-line bg-bg px-3.5 py-[11px] text-sm font-semibold text-ink outline-none" />
+      <a id="modalLink" href="#" target="_blank" rel="noopener" class="self-center rounded-full bg-accent px-4 py-[11px] text-[13px] font-bold text-inkon no-underline transition-colors hover:bg-accenthover">Open on GitHub</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.lucide) { lucide.createIcons(); }
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalText = document.getElementById('modalText');
+    const modalRepo = document.getElementById('modalRepo');
+    const modalLink = document.getElementById('modalLink');
+    const modalClose = document.getElementById('modalClose');
+
+    document.querySelectorAll('.featured-card, .card').forEach(card => {
+      if (card.dataset.modal) {
+        card.addEventListener('click', () => {
+          const p = window.__projectData[card.dataset.modal];
+          if (!p) return;
+          modalTitle.textContent = p.name;
+          modalText.innerHTML = `<p>${p.desc}</p><div class="mt-3 flex flex-wrap gap-2">${p.tags.map(t => `<span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">${t}</span>`).join('')}</div>`;
+          modalRepo.value = p.repo;
+          modalLink.href = p.link;
+          modal.classList.add('open');
+        });
+      }
+    });
+
+    modalClose.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') modal.classList.remove('open'); });
+
+    const form = document.getElementById('subscribeForm');
+    const feedBack = document.getElementById('feedBack');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[type="email"]').value.trim();
+      if (!email) { feedBack.textContent = 'Please enter your email.'; feedBack.style.color = '#ff8f8f'; return; }
+      feedBack.textContent = 'Thanks! Check your inbox for a confirmation.';
+      feedBack.style.color = '#f0b84a';
+      form.reset();
+      setTimeout(() => { feedBack.textContent = ''; }, 4000);
+    });
+  });
+</script>
+</body>
+</html>

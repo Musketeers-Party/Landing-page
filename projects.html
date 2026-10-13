@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Musketeers-Party</title>
+  <meta name="description" content="Musketeers-Party projects showcase: Nép mobile app with a live view of the project GitHub wiki." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><circle cx='18' cy='18' r='17' fill='none' stroke='%23f0b84a' stroke-width='1.5'/><circle cx='18' cy='18' r='12' fill='none' stroke='%23f0b84a' stroke-width='0.8' opacity='0.5'/><path d='M11 11 L25 25' stroke='%23f0b84a' stroke-width='2.5' stroke-linecap='round'/><path d='M11 25 L25 11' stroke='%23f0b84a' stroke-width='2.5' stroke-linecap='round' opacity='0.7'/><circle cx='18' cy='18' r='3.2' fill='%23f0b84a'/></svg>" />
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@latest/lib/marked.umd.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: { md: '821px', lg: '1025px' },
+          maxWidth: { container: '1120px' },
+          colors: {
+            bg: '#0b0d12',
+            elev: '#11141c',
+            elev2: '#161b26',
+            line: '#1f2635',
+            ink: '#e6e8ef',
+            dim: '#a9b2c1',
+            faint: '#97a0b3',
+            accent: '#f0b84a',
+            accenthover: '#ffc878',
+            inkon: '#1a0f03'
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            'float-slow': 'float 7s ease-in-out infinite reverse'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-18px)' } }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+    ::selection { background: rgba(240, 184, 74, 0.12); color: #e6e8ef; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #0b0d12; }
+    ::-webkit-scrollbar-thumb { background: #1f2635; border-radius: 8px; border: 2px solid #0b0d12; }
+    i[data-lucide] { width: 1.05em; height: 1.05em; display: inline-block; vertical-align: -0.12em; }
+    .featured-bg { background: radial-gradient(1200px 700px at 90% 110%, rgba(240, 184, 74, 0.06), transparent 55%), #0b0d12; }
+    .featured-card::before {
+      content: ""; position: absolute; inset: 0; border-radius: 16px; pointer-events: none;
+      background: radial-gradient(600px 400px at 85% 110%, rgba(240, 184, 74, 0.10), transparent 60%);
+    }
+    .wiki-nav-item { width: 100%; cursor: pointer; border-radius: 10px; border: 1px solid transparent; padding: 8px 12px; text-align: left; font-size: 14px; color: #a9b2c1; transition: all 0.2s; }
+    .wiki-nav-item:hover { border-color: #1f2635; background: #11141c; color: #e6e8ef; }
+    .wiki-nav-item.active { border-color: rgba(240, 184, 74, 0.35); background: #161b26; color: #ffc878; }
+    @media (max-width: 820px) {
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; z-index: 40;
+        flex-direction: column; align-items: flex-start; gap: 22px; padding: 80px 24px 24px;
+        background: #161b26; border-left: 1px solid #1f2635; transition: right 0.3s;
+      }
+      .nav-links.open { right: 0; }
+      .hamburger { display: block; }
+    }
+  </style>
+</head>
+<body class="bg-bg text-ink">
+
+<header class="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
+  <div class="mx-auto flex h-[68px] max-w-container items-center justify-between px-6">
+    <a href="index.html" class="flex items-center gap-3 text-lg font-extrabold tracking-tight">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" class="shrink-0">
+        <defs><linearGradient id="lg1" x1="0" y1="0" x2="38" y2="38"><stop stop-color="#f0b84a"/><stop offset="1" stop-color="#d99a2b"/></linearGradient></defs>
+        <circle cx="19" cy="19" r="18" stroke="url(#lg1)" stroke-width="1.4"/>
+        <circle cx="19" cy="19" r="13.5" stroke="#f0b84a" stroke-width="0.8" opacity="0.5"/>
+        <path d="M11.5 11.5 L26.5 26.5" stroke="#f0b84a" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M11.5 26.5 L26.5 11.5" stroke="#f0b84a" stroke-width="2.6" stroke-linecap="round" opacity="0.7"/>
+        <circle cx="19" cy="19" r="3.4" fill="#f0b84a"/>
+      </svg>
+      <span><span class="text-accenthover">Musketeers</span>-Party</span>
+    </a>
+    <ul id="navLinks" class="nav-links flex items-center gap-[22px]">
+      <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="index.html">Home</a></li>
+      <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="#projects">Projects</a></li>
+      <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="#wiki">Wiki</a></li>
+      <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="index.html#contact">Contact</a></li>
+      <li><a class="inline-flex items-center gap-1.5 rounded-full bg-accent px-[18px] py-[9px] text-[13px] font-bold text-inkon transition-colors hover:bg-accenthover hover:no-underline" href="https://github.com/Musketeers-Party" target="_blank" rel="noopener"><i data-lucide="github"></i> GitHub org</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger hidden cursor-pointer border-none bg-transparent p-0 text-ink" aria-label="Menu"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<section class="featured-bg py-16" id="projects">
+  <div class="mx-auto max-w-container px-6">
+    <div class="mb-10 max-w-[760px]">
+      <span class="mb-3 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-inkon">Showcase</span>
+      <h1 class="mb-3 text-[32px] tracking-[-0.03em]">Nép — turn every walk into a treasure hunt</h1>
+      <p class="text-[17px] text-dim">Our flagship project. Below is its live GitHub wiki, loaded straight from the repository.</p>
+    </div>
+
+    <div class="featured-card relative mb-6 overflow-hidden rounded-2xl border border-line bg-bg p-8 transition duration-200 hover:border-accent hover:shadow-[0_24px_50px_rgba(0,0,0,0.45)]">
+      <i class="relative z-10 block text-accent [&>svg]:h-14 [&>svg]:w-14" data-lucide="map-pin"></i>
+      <div class="relative z-10">
+        <div class="text-[26px] tracking-[-0.03em]">Nép</div>
+        <div class="mb-2.5 text-sm font-medium text-faint">Musketeers-Party · React Native</div>
+        <p class="my-3 text-[16px] leading-[1.7] text-dim">Nép unlocks anonymous messages hidden in real-world places, leading you beyond familiar streets and overhyped reviews to discover the city's secret corners, unexpected stories, and local perspectives one step at a time.</p>
+        <div class="mb-2.5 mt-3.5 flex flex-wrap gap-2">
+          <span class="inline-block whitespace-nowrap rounded-full border border-accent/35 bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-accenthover">React Native</span>
+          <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">Mobile</span>
+          <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">Map &amp; location</span>
+          <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">MIT license</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span id="statStars" class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">★ 1</span>
+          <span id="statForks" class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">🍴 0 forks</span>
+          <span id="statIssues" class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">🐛 14 issues</span>
+          <a class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">View repository <i data-lucide="external-link"></i></a>
+        </div>
+      </div>
+      <div class="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-[5px] text-[11px] font-extrabold uppercase tracking-[0.08em] text-inkon"><i data-lucide="award"></i> Pinned</div>
+    </div>
+  </div>
+</section>
+<!-- WIKI (live from GitHub) -->
+<section class="border-t border-line py-16" id="wiki">
+  <div class="mx-auto max-w-container px-6">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <span class="mb-3 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-inkon">Live content</span>
+        <h2 class="mb-2 text-[28px] tracking-[-0.03em]">Project Wiki</h2>
+        <p class="text-[15px] text-dim">Loaded directly from the GitHub repository wiki — always up to date.</p>
+      </div>
+      <a class="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-[13px] font-semibold text-dim transition-colors hover:border-accent hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep/wiki" target="_blank" rel="noopener"><i data-lucide="book-open"></i> Open on GitHub</a>
+    </div>
+
+    <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-[240px_1fr]">
+      <aside class="rounded-2xl border border-line bg-elev p-4 md:sticky md:top-24">
+        <h3 class="mb-3 text-[13px] font-bold uppercase tracking-[0.1em] text-faint">Wiki pages</h3>
+        <ul id="wikiList" class="flex flex-col gap-1.5"></ul>
+      </aside>
+      <article id="wikiContent" class="prose prose-invert max-w-none rounded-2xl border border-line bg-bg p-6 md:p-8 prose-headings:tracking-tight prose-a:text-accenthover prose-strong:text-ink prose-code:text-accenthover"></article>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer class="border-t border-line bg-elev2">
+  <div class="mx-auto grid max-w-container grid-cols-1 gap-6 px-6 py-9 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">⚔️ Musketeers-Party</h4>
+      <p class="text-sm text-faint">One app for all app, all app for one app.</p>
+    </div>
+    <div>
+      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Explore</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="index.html">Home</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="index.html#mission">The Musketeer Code</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="#wiki">Nép Wiki</a>
+      <a class="block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="index.html#contact">Contact</a>
+    </div>
+    <div>
+      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Nép</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">Repository</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep/wiki" target="_blank" rel="noopener">Wiki</a>
+      <a class="block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep/issues" target="_blank" rel="noopener">Issues</a>
+    </div>
+    <div>
+      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Connect</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party" target="_blank" rel="noopener">GitHub organization</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep/blob/main/SECURITY.md" target="_blank" rel="noopener">Security policy</a>
+    </div>
+  </div>
+  <div class="px-6 py-[18px] text-center text-[13px] text-faint">
+    &copy; 2026 Musketeers-Party. Built with ♥ by the Musketeers.
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.lucide) lucide.createIcons();
+    if (window.marked) marked.setOptions({ gfm: true, breaks: true });
+
+    /* ---------- mobile nav ---------- */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    window.addEventListener('resize', () => { if (window.innerWidth > 820) navLinks.classList.remove('open'); });
+
+    /* ---------- live repo stats ---------- */
+    fetch('https://api.github.com/repos/Musketeers-Party/Nep')
+      .then(r => r.json())
+      .then(d => {
+        if (typeof d.stargazers_count !== 'number') return;
+        document.getElementById('statStars').textContent = `★ ${d.stargazers_count}`;
+        document.getElementById('statForks').textContent = `🍴 ${d.forks_count} forks`;
+        document.getElementById('statIssues').textContent = `🐛 ${d.open_issues_count} issues`;
+      })
+      .catch(() => { /* keep static fallback values */ });
+
+    /* ---------- wiki viewer ---------- */
+    const OWNER = 'Musketeers-Party', REPO = 'Nep';
+    const WIKI_PAGES = [
+      'Home', 'Business-Canvas', 'Critical-Assumptions', 'Critical-User-Flows',
+      'Evidence-Evaluation-and-Product-Decision', 'Evidence-Plan',
+      'Existing-Solutions-and-Alternatives', 'Mobile-Product-Rationale',
+      'MVP-Scope-and-Prioritization', 'Project-Direction',
+      'User-and-Market-Research', 'User-Stories'
+    ];
+    const list = document.getElementById('wikiList');
+    const content = document.getElementById('wikiContent');
+
+    WIKI_PAGES.forEach(page => {
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.className = 'wiki-nav-item';
+      btn.dataset.page = page;
+      btn.textContent = page.replace(/-/g, ' ');
+      btn.addEventListener('click', () => loadWiki(page));
+      li.appendChild(btn);
+      list.appendChild(li);
+    });
+
+    function setActive(page) {
+      document.querySelectorAll('.wiki-nav-item').forEach(b =>
+        b.classList.toggle('active', b.dataset.page === page));
+    }
+
+    async function loadWiki(page) {
+      setActive(page);
+      history.replaceState(null, '', '#' + page);
+      content.innerHTML = '<p class="text-dim">Loading wiki page…</p>';
+      try {
+        const res = await fetch(`https://raw.githubusercontent.com/wiki/${OWNER}/${REPO}/${page}.md`);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const md = await res.text();
+        content.innerHTML = window.marked
+          ? marked.parse(md)
+          : '<pre>' + md.replace(/</g, '&lt;') + '</pre>';
+      } catch (err) {
+        content.innerHTML =
+          `<p>Could not load this wiki page (${err.message}). You can read it on GitHub instead:</p>` +
+          `<p><a href="https://github.com/${OWNER}/${REPO}/wiki/${page}" target="_blank" rel="noopener">Open "${page.replace(/-/g, ' ')}" on GitHub →</a></p>`;
+      }
+    }
+
+    const fromHash = location.hash.slice(1);
+    loadWiki(WIKI_PAGES.includes(fromHash) ? fromHash : 'Home');
+  });
+</script>
+</body>
+</html>
