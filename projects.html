@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects — Musketeers-Party</title>
   <meta name="description" content="Musketeers-Party projects showcase: Nép mobile app with a live view of the project GitHub wiki." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><circle cx='18' cy='18' r='17' fill='none' stroke='%23f0b84a' stroke-width='1.5'/><circle cx='18' cy='18' r='12' fill='none' stroke='%23f0b84a' stroke-width='0.8' opacity='0.5'/><path d='M11 11 L25 25' stroke='%23f0b84a' stroke-width='2.5' stroke-linecap='round'/><path d='M11 25 L25 11' stroke='%23f0b84a' stroke-width='2.5' stroke-linecap='round' opacity='0.7'/><circle cx='18' cy='18' r='3.2' fill='%23f0b84a'/></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><circle cx='18' cy='18' r='17' fill='none' stroke='%23FF4FA3' stroke-width='1.5'/><circle cx='18' cy='18' r='12' fill='none' stroke='%238B5CF6' stroke-width='0.8' opacity='0.5'/><path d='M11 11 L25 25' stroke='%23FF4FA3' stroke-width='2.5' stroke-linecap='round'/><path d='M11 25 L25 11' stroke='%238B5CF6' stroke-width='2.5' stroke-linecap='round' opacity='0.7'/><circle cx='18' cy='18' r='3.2' fill='%23FF4FA3'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked@latest/lib/marked.umd.js"></script>
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
@@ -15,17 +19,38 @@
         extend: {
           screens: { md: '821px', lg: '1025px' },
           maxWidth: { container: '1120px' },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
           colors: {
-            bg: '#0b0d12',
-            elev: '#11141c',
-            elev2: '#161b26',
-            line: '#1f2635',
-            ink: '#e6e8ef',
-            dim: '#a9b2c1',
-            faint: '#97a0b3',
-            accent: '#f0b84a',
-            accenthover: '#ffc878',
-            inkon: '#1a0f03'
+            // Nép Design System colors (dessystem.svg)
+            bg: '#0B0717',          // bg/base: Nền chính của ứng dụng
+            bgdeep: '#06040D',      // bg/deep: Nền sâu nhất (màn hình chờ, lớp phủ)
+            elev: '#140E26',        // surface/1: Bề mặt thẻ, card background
+            elev2: '#1D1536',       // surface/2: Bề mặt nổi, ô nhập
+            surface3: '#2A2048',    // surface/3: Bề mặt đang được chọn / hover
+            line: 'rgba(255, 255, 255, 0.08)',       // stroke/subtle: Viền mảnh mặc định
+            lineStrong: 'rgba(255, 255, 255, 0.16)', // stroke/strong: Viền nhấn
+            ink: '#F6F1FF',         // text/primary: Chữ chính
+            dim: '#B9AED6',         // text/secondary: Chữ phụ, mô tả
+            faint: '#7D7299',       // text/tertiary: Chú thích, gợi ý nhập
+            inkon: '#FFFFFF',       // text/on-brand: Chữ trên nền gradient
+            accent: '#FF4FA3',      // brand/pink: Màu thương hiệu chính (pin pha lê)
+            accenthover: '#FF8CC6', // brand/pink-soft: Hồng nhạt cho chữ và icon nhấn
+            violet: '#8B5CF6',      // brand/violet: Tím thạch anh
+            magenta: '#D946EF',     // brand/magenta: Chuyển tiếp hồng sang tím
+            blue: '#4F6BFF',        // brand/blue: Xanh vòng radar, vị trí
+            cyan: '#38D6FF',        // brand/cyan: Xanh điểm sáng, Gem hình ảnh
+            good: '#3EE6A8',        // status/good: Mint tiếp sức
+            trap: '#FF4D6A',        // status/trap: Coral red
+            warning: '#FFC14D',     // status/warning: Warm amber
+            immortal: '#FFD36E'     // status/immortal: Gold bất tử, Premium
+          },
+          boxShadow: {
+            'glow-pink': '0 0 24px rgba(255, 79, 163, 0.45)',
+            'glow-violet': '0 0 24px rgba(139, 92, 246, 0.45)',
+            'glow-cyan': '0 0 24px rgba(56, 214, 255, 0.45)',
+            'glow-card': '0 12px 36px rgba(0, 0, 0, 0.4), 0 0 24px rgba(139, 92, 246, 0.15)'
           },
           animation: {
             float: 'float 6s ease-in-out infinite',
@@ -39,29 +64,50 @@
     }
   </script>
   <style>
+    html, body { overflow-x: hidden; width: 100%; position: relative; }
     html { scroll-behavior: smooth; }
-    body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-    ::selection { background: rgba(240, 184, 74, 0.12); color: #e6e8ef; }
+    body { font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif; background-color: #0B0717; color: #F6F1FF; }
+    ::selection { background: rgba(255, 79, 163, 0.25); color: #F6F1FF; }
     ::-webkit-scrollbar { width: 10px; height: 10px; }
-    ::-webkit-scrollbar-track { background: #0b0d12; }
-    ::-webkit-scrollbar-thumb { background: #1f2635; border-radius: 8px; border: 2px solid #0b0d12; }
+    ::-webkit-scrollbar-track { background: #0B0717; }
+    ::-webkit-scrollbar-thumb { background: #2A2048; border-radius: 8px; border: 2px solid #0B0717; }
+    ::-webkit-scrollbar-thumb:hover { background: #8B5CF6; }
     i[data-lucide] { width: 1.05em; height: 1.05em; display: inline-block; vertical-align: -0.12em; }
-    .featured-bg { background: radial-gradient(1200px 700px at 90% 110%, rgba(240, 184, 74, 0.06), transparent 55%), #0b0d12; }
+    .featured-bg {
+      background:
+        radial-gradient(1100px 650px at 90% 110%, rgba(255, 79, 163, 0.12), transparent 55%),
+        radial-gradient(850px 600px at 10% 10%, rgba(139, 92, 246, 0.12), transparent 50%),
+        #0B0717;
+    }
     .featured-card::before {
       content: ""; position: absolute; inset: 0; border-radius: 16px; pointer-events: none;
-      background: radial-gradient(600px 400px at 85% 110%, rgba(240, 184, 74, 0.10), transparent 60%);
+      background: radial-gradient(600px 400px at 85% 110%, rgba(255, 79, 163, 0.12), transparent 60%);
     }
-    .wiki-nav-item { width: 100%; cursor: pointer; border-radius: 10px; border: 1px solid transparent; padding: 8px 12px; text-align: left; font-size: 14px; color: #a9b2c1; transition: all 0.2s; }
-    .wiki-nav-item:hover { border-color: #1f2635; background: #11141c; color: #e6e8ef; }
-    .wiki-nav-item.active { border-color: rgba(240, 184, 74, 0.35); background: #161b26; color: #ffc878; }
+    .btn-primary {
+      background: linear-gradient(135deg, #FF4FA3 0%, #B44CF5 50%, #5B6CFF 100%);
+      color: #FFFFFF;
+      box-shadow: 0 0 22px rgba(255, 79, 163, 0.38);
+      transition: all 0.25s ease;
+    }
+    .btn-primary:hover {
+      filter: brightness(1.12);
+      box-shadow: 0 0 32px rgba(255, 79, 163, 0.65), 0 0 12px rgba(139, 92, 246, 0.5);
+      transform: translateY(-1px);
+    }
+    .wiki-nav-item {
+      width: 100%; cursor: pointer; border-radius: 10px; border: 1px solid transparent;
+      padding: 8px 12px; text-align: left; font-size: 14px; color: #B9AED6; transition: all 0.2s;
+      background: transparent;
+    }
+    .wiki-nav-item:hover {
+      border-color: rgba(255, 255, 255, 0.1); background: #1D1536; color: #F6F1FF;
+    }
+    .wiki-nav-item.active {
+      border-color: rgba(255, 79, 163, 0.45); background: #1D1536; color: #FF8CC6;
+      box-shadow: 0 0 16px rgba(255, 79, 163, 0.16);
+    }
+    /* responsive */
     @media (max-width: 820px) {
-      .nav-links {
-        position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; z-index: 40;
-        flex-direction: column; align-items: flex-start; gap: 22px; padding: 80px 24px 24px;
-        background: #161b26; border-left: 1px solid #1f2635; transition: right 0.3s;
-      }
-      .nav-links.open { right: 0; }
-      .hamburger { display: block; }
     }
   </style>
 </head>
@@ -71,70 +117,131 @@
   <div class="mx-auto flex h-[68px] max-w-container items-center justify-between px-6">
     <a href="index.html" class="flex items-center gap-3 text-lg font-extrabold tracking-tight">
       <svg width="38" height="38" viewBox="0 0 38 38" fill="none" class="shrink-0">
-        <defs><linearGradient id="lg1" x1="0" y1="0" x2="38" y2="38"><stop stop-color="#f0b84a"/><stop offset="1" stop-color="#d99a2b"/></linearGradient></defs>
-        <circle cx="19" cy="19" r="18" stroke="url(#lg1)" stroke-width="1.4"/>
-        <circle cx="19" cy="19" r="13.5" stroke="#f0b84a" stroke-width="0.8" opacity="0.5"/>
-        <path d="M11.5 11.5 L26.5 26.5" stroke="#f0b84a" stroke-width="2.6" stroke-linecap="round"/>
-        <path d="M11.5 26.5 L26.5 11.5" stroke="#f0b84a" stroke-width="2.6" stroke-linecap="round" opacity="0.7"/>
-        <circle cx="19" cy="19" r="3.4" fill="#f0b84a"/>
+        <defs>
+          <linearGradient id="brandLogoGrad" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FF4FA3"/>
+            <stop offset="0.5" stop-color="#8B5CF6"/>
+            <stop offset="1" stop-color="#38D6FF"/>
+          </linearGradient>
+        </defs>
+        <circle cx="19" cy="19" r="18" stroke="url(#brandLogoGrad)" stroke-width="1.6"/>
+        <circle cx="19" cy="19" r="13.5" stroke="#8B5CF6" stroke-width="0.8" opacity="0.5"/>
+        <path d="M11.5 11.5 L26.5 26.5" stroke="url(#brandLogoGrad)" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M11.5 26.5 L26.5 11.5" stroke="url(#brandLogoGrad)" stroke-width="2.6" stroke-linecap="round" opacity="0.75"/>
+        <circle cx="19" cy="19" r="3.4" fill="#FF4FA3"/>
       </svg>
-      <span><span class="text-accenthover">Musketeers</span>-Party</span>
+      <span><span class="bg-gradient-to-r from-accent via-accenthover to-violet bg-clip-text text-transparent">Musketeers</span>-Party</span>
     </a>
-    <ul id="navLinks" class="nav-links flex items-center gap-[22px]">
+    <ul id="navLinks" class="nav-links hidden md:flex items-center gap-[22px]">
       <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="index.html">Home</a></li>
       <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="#projects">Projects</a></li>
       <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="#wiki">Wiki</a></li>
       <li><a class="text-sm font-medium text-dim transition-colors hover:text-ink hover:no-underline" href="index.html#contact">Contact</a></li>
-      <li><a class="inline-flex items-center gap-1.5 rounded-full bg-accent px-[18px] py-[9px] text-[13px] font-bold text-inkon transition-colors hover:bg-accenthover hover:no-underline" href="https://github.com/Musketeers-Party" target="_blank" rel="noopener"><i data-lucide="github"></i> GitHub org</a></li>
+      <li><a class="btn-primary inline-flex items-center gap-2 rounded-full px-[18px] py-[9px] text-[13px] font-bold no-underline" href="https://github.com/Musketeers-Party" target="_blank" rel="noopener"><i class="fa fa-github text-base"></i> GitHub org</a></li>
     </ul>
-    <button id="hamburger" class="hamburger hidden cursor-pointer border-none bg-transparent p-0 text-ink" aria-label="Menu"><i data-lucide="menu"></i></button>
+    <!-- Mobile Hamburger button -->
+    <button id="hamburger" class="flex md:hidden h-10 w-10 items-center justify-center rounded-xl border border-line bg-elev2 text-ink hover:border-accent hover:text-accenthover transition-all cursor-pointer" aria-label="Menu">
+      <i data-lucide="menu" class="h-5 w-5"></i>
+    </button>
   </div>
 </header>
+
+<!-- Mobile Sticky Navigation Bar -->
+<nav class="md:hidden sticky top-[68px] z-40 flex items-center justify-around border-b border-line bg-elev/95 px-4 py-2.5 backdrop-blur-md text-[13px] font-semibold">
+  <a href="index.html" class="text-dim hover:text-accenthover transition-colors">Home</a>
+  <span class="text-line">•</span>
+  <a href="#projects" class="text-dim hover:text-accenthover transition-colors">Projects</a>
+  <span class="text-line">•</span>
+  <a href="#wiki" class="text-dim hover:text-accenthover transition-colors">Nép Wiki</a>
+  <span class="text-line">•</span>
+  <a href="index.html#contact" class="text-dim hover:text-accenthover transition-colors">Contact</a>
+</nav>
+
+<!-- Mobile Drawer Backdrop & Drawer Menu -->
+<div id="navBackdrop" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden hidden"></div>
+
+<aside id="mobileDrawer" class="fixed top-0 right-0 z-50 h-full w-[280px] translate-x-full border-l border-line bg-elev p-6 shadow-2xl transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-between hidden">
+  <div>
+    <div class="flex items-center justify-between pb-5 border-b border-line">
+      <div class="flex items-center gap-2.5 text-base font-extrabold tracking-tight">
+        <svg width="28" height="28" viewBox="0 0 38 38" fill="none" class="shrink-0">
+          <circle cx="19" cy="19" r="18" stroke="#FF4FA3" stroke-width="1.6"/>
+          <path d="M11.5 11.5 L26.5 26.5" stroke="#FF4FA3" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M11.5 26.5 L26.5 11.5" stroke="#8B5CF6" stroke-width="2.6" stroke-linecap="round" opacity="0.75"/>
+          <circle cx="19" cy="19" r="3.4" fill="#FF4FA3"/>
+        </svg>
+        <span><span class="text-accenthover">Musketeers</span>-Party</span>
+      </div>
+      <button id="navClose" class="flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-elev2 text-faint hover:text-ink cursor-pointer">
+        <i data-lucide="x" class="h-4 w-4"></i>
+      </button>
+    </div>
+
+    <ul class="mt-6 flex flex-col gap-2 text-[15px] font-medium">
+      <li><a class="drawer-link flex items-center justify-between rounded-xl px-3 py-2.5 text-dim transition-colors hover:bg-elev2 hover:text-ink" href="index.html"><span>Home</span> <i data-lucide="chevron-right" class="h-4 w-4 text-faint"></i></a></li>
+      <li><a class="drawer-link flex items-center justify-between rounded-xl px-3 py-2.5 text-dim transition-colors hover:bg-elev2 hover:text-ink" href="#projects"><span>Projects</span> <i data-lucide="chevron-right" class="h-4 w-4 text-faint"></i></a></li>
+      <li><a class="drawer-link flex items-center justify-between rounded-xl px-3 py-2.5 text-dim transition-colors hover:bg-elev2 hover:text-ink" href="#wiki"><span>Nép Wiki</span> <i data-lucide="chevron-right" class="h-4 w-4 text-faint"></i></a></li>
+      <li><a class="drawer-link flex items-center justify-between rounded-xl px-3 py-2.5 text-dim transition-colors hover:bg-elev2 hover:text-ink" href="index.html#contact"><span>Contact</span> <i data-lucide="chevron-right" class="h-4 w-4 text-faint"></i></a></li>
+    </ul>
+  </div>
+
+  <div class="border-t border-line pt-4">
+    <a class="btn-primary flex w-full items-center justify-center gap-2 rounded-full py-3 text-sm font-bold no-underline" href="https://github.com/Musketeers-Party" target="_blank" rel="noopener">
+      <i class="fa fa-github"></i>
+      <span>GitHub organization</span>
+    </a>
+  </div>
+</aside>
 
 <section class="featured-bg py-16" id="projects">
   <div class="mx-auto max-w-container px-6">
     <div class="mb-10 max-w-[760px]">
-      <span class="mb-3 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-inkon">Showcase</span>
-      <h1 class="mb-3 text-[32px] tracking-[-0.03em]">Nép — turn every walk into a treasure hunt</h1>
+      <span class="mb-3 inline-block rounded-full border border-accent/30 bg-elev2 px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-accenthover">Showcase</span>
+      <h1 class="mb-3 text-[32px] font-extrabold tracking-[-0.03em] text-ink">Nép — turn every walk into a treasure hunt</h1>
       <p class="text-[17px] text-dim">Our flagship project. Below is its live GitHub wiki, loaded straight from the repository.</p>
     </div>
 
-    <div class="featured-card relative mb-6 overflow-hidden rounded-2xl border border-line bg-bg p-8 transition duration-200 hover:border-accent hover:shadow-[0_24px_50px_rgba(0,0,0,0.45)]">
-      <i class="relative z-10 block text-accent [&>svg]:h-14 [&>svg]:w-14" data-lucide="map-pin"></i>
+    <div class="featured-card relative mb-6 overflow-hidden rounded-2xl border border-line bg-elev p-8 transition duration-200 hover:border-accent hover:shadow-[0_24px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(255,79,163,0.18)]">
+      <div class="relative z-10 flex items-center gap-4 mb-3">
+        <img src="assets/nep-logo.jpg" alt="Nép logo" class="h-16 w-16 rounded-2xl border border-white/10 shadow-[0_0_24px_rgba(255,79,163,0.4)] object-cover" />
+        <div>
+          <div class="text-[26px] font-extrabold tracking-[-0.03em] text-ink">Nép</div>
+          <div class="text-sm font-medium text-faint">Musketeers-Party · React Native</div>
+        </div>
+      </div>
       <div class="relative z-10">
-        <div class="text-[26px] tracking-[-0.03em]">Nép</div>
-        <div class="mb-2.5 text-sm font-medium text-faint">Musketeers-Party · React Native</div>
         <p class="my-3 text-[16px] leading-[1.7] text-dim">Nép unlocks anonymous messages hidden in real-world places, leading you beyond familiar streets and overhyped reviews to discover the city's secret corners, unexpected stories, and local perspectives one step at a time.</p>
         <div class="mb-2.5 mt-3.5 flex flex-wrap gap-2">
-          <span class="inline-block whitespace-nowrap rounded-full border border-accent/35 bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-accenthover">React Native</span>
+          <span class="inline-block whitespace-nowrap rounded-full border border-accent/40 bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-accenthover">React Native</span>
           <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">Mobile</span>
           <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">Map &amp; location</span>
           <span class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">MIT license</span>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-          <span id="statStars" class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">★ 1</span>
+          <span id="statStars" class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-immortal">★ 1</span>
           <span id="statForks" class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">🍴 0 forks</span>
-          <span id="statIssues" class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-dim">🐛 14 issues</span>
-          <a class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">View repository <i data-lucide="external-link"></i></a>
+          <span id="statIssues" class="inline-block whitespace-nowrap rounded-full border border-line bg-elev2 px-2.5 py-[3px] text-[11px] font-semibold text-cyan">🐛 14 issues</span>
+          <a class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-dim transition-colors hover:text-accenthover hover:no-underline ml-1" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">View repository <i data-lucide="external-link"></i></a>
         </div>
       </div>
-      <div class="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-[5px] text-[11px] font-extrabold uppercase tracking-[0.08em] text-inkon"><i data-lucide="award"></i> Pinned</div>
+      <div class="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-accent via-magenta to-blue px-2.5 py-[5px] text-[11px] font-extrabold uppercase tracking-[0.08em] text-white shadow-[0_0_16px_rgba(255,79,163,0.4)]"><i data-lucide="award"></i> Pinned</div>
     </div>
   </div>
 </section>
+
 <!-- WIKI (live from GitHub) -->
 <section class="border-t border-line py-16" id="wiki">
   <div class="mx-auto max-w-container px-6">
     <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
       <div>
-        <span class="mb-3 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-inkon">Live content</span>
-        <h2 class="mb-2 text-[28px] tracking-[-0.03em]">Project Wiki</h2>
+        <span class="mb-3 inline-block rounded-full border border-accent/30 bg-elev2 px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-accenthover">Live content</span>
+        <h2 class="mb-2 text-[28px] font-extrabold tracking-[-0.03em] text-ink">Project Wiki</h2>
         <p class="text-[15px] text-dim">Loaded directly from the GitHub repository wiki — always up to date.</p>
       </div>
-      <a class="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-[13px] font-semibold text-dim transition-colors hover:border-accent hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep/wiki" target="_blank" rel="noopener"><i data-lucide="book-open"></i> Open on GitHub</a>
+      <a class="inline-flex items-center gap-1.5 rounded-full border border-lineStrong bg-elev2 px-4 py-2 text-[13px] font-semibold text-dim transition-colors hover:border-accent hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep/wiki" target="_blank" rel="noopener"><i data-lucide="book-open"></i> Open on GitHub</a>
     </div>
 
-    <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-[240px_1fr]">
+    <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-[260px_1fr]">
       <aside class="rounded-2xl border border-line bg-elev p-4 md:sticky md:top-24">
         <div class="mb-3">
           <div class="text-[15px] font-bold text-ink">💎 Nép Wiki</div>
@@ -171,13 +278,13 @@
         <hr class="my-3 border-line" />
         <div class="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-faint">🔗 Liên kết Nhanh</div>
         <ul class="flex flex-col gap-1.5">
-          <li><a class="wiki-nav-item no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">💻 GitHub Repository</a></li>
-          <li><a class="wiki-nav-item no-underline" href="https://github.com/Musketeers-Party/Nep/issues" target="_blank" rel="noopener">🐛 Báo cáo Sự cố (Issues)</a></li>
-          <li><a class="wiki-nav-item no-underline" href="https://github.com/Musketeers-Party/Nep/security" target="_blank" rel="noopener">🛡️ Chính sách Bảo mật</a></li>
+          <li><a class="wiki-nav-item no-underline block" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">💻 GitHub Repository</a></li>
+          <li><a class="wiki-nav-item no-underline block" href="https://github.com/Musketeers-Party/Nep/issues" target="_blank" rel="noopener">🐛 Báo cáo Sự cố (Issues)</a></li>
+          <li><a class="wiki-nav-item no-underline block" href="https://github.com/Musketeers-Party/Nep/security" target="_blank" rel="noopener">🛡️ Chính sách Bảo mật</a></li>
         </ul>
         <div class="mt-4 border-t border-line pt-3 text-[11px] text-faint">📍 Nép Mobile App • Musketeers Party</div>
       </aside>
-      <article id="wikiContent" class="prose prose-invert max-w-none rounded-2xl border border-line bg-bg p-6 md:p-8 prose-headings:tracking-tight prose-a:text-accenthover prose-strong:text-ink prose-code:text-accenthover"></article>
+      <article id="wikiContent" class="prose prose-invert max-w-none rounded-2xl border border-line bg-elev p-6 md:p-8 prose-headings:text-ink prose-headings:tracking-tight prose-a:text-accenthover hover:prose-a:text-accent prose-strong:text-ink prose-code:text-accenthover prose-code:bg-elev2 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-blockquote:border-l-accent prose-blockquote:bg-elev2/40 prose-blockquote:p-3 prose-blockquote:rounded-r-lg prose-hr:border-line prose-table:border-collapse prose-th:border prose-th:border-line prose-th:p-2.5 prose-th:bg-elev2 prose-td:border prose-td:border-line prose-td:p-2.5"></article>
     </div>
 
     <div class="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-line pt-4 text-[13px] text-dim">
@@ -188,33 +295,35 @@
     </div>
   </div>
 </section>
+
 <!-- FOOTER -->
-<footer class="border-t border-line bg-elev2">
+<footer class="border-t border-line bg-bgdeep">
   <div class="mx-auto grid max-w-container grid-cols-1 gap-6 px-6 py-9 md:grid-cols-2 lg:grid-cols-4">
     <div>
-      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">⚔️ Musketeers-Party</h4>
-      <p class="text-sm text-faint">One app for all app, all app for one app.</p>
+      <h4 class="mb-2.5 text-[13px] font-bold uppercase tracking-[0.1em] text-faint">⚔️ Musketeers-Party</h4>
+      <p class="text-sm text-dim">One app for all app, all app for one app.</p>
     </div>
     <div>
-      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Explore</h4>
-      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="index.html">Home</a>
-      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="index.html#mission">The Musketeer Code</a>
-      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="#wiki">Nép Wiki</a>
-      <a class="block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="index.html#contact">Contact</a>
+      <h4 class="mb-2.5 text-[13px] font-bold uppercase tracking-[0.1em] text-faint">Explore</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="index.html">Home</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="index.html#mission">The Musketeer Code</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="#wiki">Nép Wiki</a>
+      <a class="block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="index.html#contact">Contact</a>
     </div>
     <div>
-      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Nép</h4>
-      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">Repository</a>
-      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep/wiki" target="_blank" rel="noopener">Wiki</a>
-      <a class="block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep/issues" target="_blank" rel="noopener">Issues</a>
+      <h4 class="mb-2.5 text-[13px] font-bold uppercase tracking-[0.1em] text-faint">Nép</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">Repository</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep/wiki" target="_blank" rel="noopener">Wiki</a>
+      <a class="block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep/issues" target="_blank" rel="noopener">Issues</a>
     </div>
     <div>
-      <h4 class="mb-2.5 text-[13px] uppercase tracking-[0.1em] text-faint">Connect</h4>
-      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party" target="_blank" rel="noopener">GitHub organization</a>
-      <a class="mb-2 block text-sm text-dim transition-colors hover:text-ink hover:no-underline" href="https://github.com/Musketeers-Party/Nep/blob/main/SECURITY.md" target="_blank" rel="noopener">Security policy</a>
+      <h4 class="mb-2.5 text-[13px] font-bold uppercase tracking-[0.1em] text-faint">Connect</h4>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party" target="_blank" rel="noopener">GitHub organization</a>
+      <a class="mb-2 block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep" target="_blank" rel="noopener">GitHub repository</a>
+      <a class="block text-sm text-dim transition-colors hover:text-accenthover hover:no-underline" href="https://github.com/Musketeers-Party/Nep/blob/main/SECURITY.md" target="_blank" rel="noopener">Security policy</a>
     </div>
   </div>
-  <div class="px-6 py-[18px] text-center text-[13px] text-faint">
+  <div class="border-t border-line px-6 py-[18px] text-center text-[13px] text-faint">
     &copy; 2026 Musketeers-Party. Built with ♥ by the Musketeers.
   </div>
 </footer>
@@ -224,12 +333,38 @@
     if (window.lucide) lucide.createIcons();
     if (window.marked) marked.setOptions({ gfm: true, breaks: true });
 
-    /* ---------- mobile nav ---------- */
+    /* ---------- mobile nav drawer ---------- */
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-    window.addEventListener('resize', () => { if (window.innerWidth > 820) navLinks.classList.remove('open'); });
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const navBackdrop = document.getElementById('navBackdrop');
+    const navClose = document.getElementById('navClose');
+
+    function openDrawer() {
+      mobileDrawer.classList.remove('hidden');
+      mobileDrawer.offsetHeight;
+      mobileDrawer.classList.remove('translate-x-full');
+      navBackdrop.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+      navBackdrop.classList.add('opacity-100', 'pointer-events-auto');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      mobileDrawer.classList.add('translate-x-full');
+      navBackdrop.classList.remove('opacity-100', 'pointer-events-auto');
+      navBackdrop.classList.add('opacity-0', 'pointer-events-none');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        if (mobileDrawer.classList.contains('translate-x-full')) {
+          mobileDrawer.classList.add('hidden');
+          navBackdrop.classList.add('hidden');
+        }
+      }, 300);
+    }
+
+    if (hamburger) hamburger.addEventListener('click', openDrawer);
+    if (navClose) navClose.addEventListener('click', closeDrawer);
+    if (navBackdrop) navBackdrop.addEventListener('click', closeDrawer);
+    document.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click', closeDrawer));
 
     /* ---------- live repo stats ---------- */
     fetch('https://api.github.com/repos/Musketeers-Party/Nep')
